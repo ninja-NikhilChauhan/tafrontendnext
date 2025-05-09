@@ -1,6 +1,6 @@
 export const submitProject = async (formData) => {
   try {
-    const response = await fetch('http://localhost:8000/analyze-project', {
+    const response = await fetch('https://ta-mainpython.onrender.com/analyze-project', {
       method: 'POST',
       body: formData,
       // Don't set Content-Type header - let browser set it automatically
