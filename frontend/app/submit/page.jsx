@@ -11,6 +11,13 @@ export default function SubmitPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+     // Ask for notification permission first
+  if ('Notification' in window) {
+    if (Notification.permission === 'default') {
+      await Notification.requestPermission(); // Request only if not already granted or denied
+    }
+  }
     if (!file) {
       setError('Please select a file');
       return;
@@ -39,7 +46,15 @@ export default function SubmitPage() {
 
       const result = await submitProject(formData);
       localStorage.setItem('evaluationResult', JSON.stringify(result));
+          //  Desktop Notification before redirect
+
       router.push('/results');
+      if ('Notification' in window && Notification.permission === 'granted') {
+  new Notification('Submission Successful', {
+    body: 'Your project has been submitted.',
+  });
+}
+      
     } catch (err) {
       setError(err.message || 'Submission failed');
       console.error('Submission error:', err);
