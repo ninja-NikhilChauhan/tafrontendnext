@@ -50,8 +50,8 @@ export default function SubmitPage() {
 
       router.push('/results');
       if ('Notification' in window && Notification.permission === 'granted') {
-  new Notification('Submission Successful', {
-    body: 'Your project has been submitted.',
+  new Notification('Evaluation Successful', {
+    body: 'Your project has been evaluated.',
   });
 }
       
